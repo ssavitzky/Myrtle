@@ -26,6 +26,7 @@ clean::
 	rm -rf $(OPT)
 
 # dzen2 is one of the status bars we use with xmonad; it's the simplest to compile.
+# 	This is already in Honu; we're just leaving it here as an example.
 dzen:
 	git clone git@github.com:robm/dzen
 	cd dzen; git am ../patches/dzen*.patch
@@ -38,8 +39,7 @@ install-dzen:: | dzen
 ### If we're using the Tools package, chain in its Makefile
 #	See ../Makefile for more information about Tools.
 #
-CHAIN = $(firstword $(wildcard ../../MakeStuff/Makefile ../../../MakeStuff/Makefile \
-			       ../../Tools/Makefile     ../../../Tools/Makefile))
+CHAIN = $(wildcard ../../MakeStuff/Makefile ../../../MakeStuff/Makefile)
 include $(CHAIN)
 
 report-vars::
