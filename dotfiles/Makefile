@@ -1,9 +1,13 @@
 ### Makefile for dotfiles
 #
 
+# We don't want to clutter up the user's home directory with symlinks, so we
+# take advantage of the fact that there's already a link to Honu, and that
+# we're on the same level.  At some point we may want to worry about that.
+
 DST = $(HOME)
-REL = Honu/dotfiles
-CFG = $(shell dirname `/bin/pwd`)
+PKG := $(notdir $(shell dirname `pwd`))
+SRC = Honu/../$(PKG)
 
 SRCFILES := $(wildcard _*)
 DOTFILES := $(shell for f in $(SRCFILES); do echo $$f| sed -e 's/_/./'; done)
@@ -18,37 +22,19 @@ ORIGINALS = ../local/originals
 
 ### Install dotfiles in $(HOME).
 #
-install::	| $(HOME)/$(REL)
+install::
 	@[ -z "$(NONLINKS)" ] || echo moving $(NONLINKS) to $(ORIGINALS)
 	@for f in $(NONLINKS); do mkdir $(ORIGINALS); mv $$f $(ORIGINALS); done
 	@for f in $(SRCFILES); do \
 		(cd $(DST) 						\
-		; ln -nsf $(REL)/$$f `echo $$f| sed -e 's/_/./'`	\
+		; ln -nsf $(SRC)/$$f `echo $$f| sed -e 's/_/./'`	\
 		) done
 
-# We may have installed or changed .fonts, so update the cache
-install::
-	fc-cache ~/.fonts/
-
-$(HOME)/$(REL):
-	echo "linking Honu->$(CFG)"
-	(cd $(HOME); ln -s $(CFG) .)
-
-# Remove broken symlinks in $(HOME)
-cleanup::
-	@for f in $(HOME)/.*; do			\
-	    if [ -L $$f -a ! -e $$f ]; then		\
-	    	echo removing broken symlink $$f;	\
-	    	rm $$f;					\
-	    fi						\
-	done
-
 ### If we're using the MakeStuff package, chain in its Makefile
-CHAIN = $(firstword $(wildcard ../../MakeStuff/Makefile ../../../MakeStuff/Makefile)
+CHAIN = $(wildcard ../../MakeStuff/Makefile ../../../MakeStuff/Makefile)
 include $(CHAIN)
 
 report-vars::
-	@echo CFG= $(CFG)
 	@echo SRCFILES=$(SRCFILES)
 	@echo NONLINKS=$(NONLINKS)
 	@echo CHAIN=$(CHAIN)
