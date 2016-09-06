@@ -1,7 +1,7 @@
 ### depends.make for Honu/emacs
 #
 
-### Prevent make push from trying to push ljupdate
+### Prevent make push (MakeStuff) from trying to push subdirs.
 
 GITDIRS :=
 
@@ -9,12 +9,12 @@ GITDIRS :=
 
 ### Install target
 #
-install:: | ljupdate
-install:: | html-helper-mode
 install:: | $(HOME)/emacs
 
 $(HOME)/emacs: | $(HOME)/Honu
-	cd $(HOME); ln -sf Honu/emacs .
+	cd $(HOME); ln -snf Honu/emacs .
+
+### Leaving these in as an example; add to install prerequisites if you want 'em.
 
 # was originally  git://github.com/hober/ljupdate.git, but the fork is
 # more recent.
@@ -29,8 +29,7 @@ html-helper-mode:
 ### If we're using the Tools package, chain in its Makefile
 #	See ../Makefile for more information about Tools.
 #
-CHAIN = $(firstword $(wildcard ../../MakeStuff/Makefile ../../../MakeStuff/Makefile \
-			       ../../Tools/Makefile     ../../../Tools/Makefile))
+CHAIN = $(wildcard ../../MakeStuff/Makefile ../../../MakeStuff/Makefile)
 include $(CHAIN)
 
 report-vars::

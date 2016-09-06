@@ -1,8 +1,13 @@
 ### Makefile for dotconfig
 #
 
+# We don't want to clutter up the user's home directory with symlinks, so we
+# take advantage of the fact that there's already a link to Honu, and that
+# we're on the same level.  At some point we may want to worry about that.
+
 DST = $(HOME)/.config
-REL = ../Honu/dotconfig
+PKG := $(notdir $(shell dirname `pwd`))
+REL = ../Honu/../$(PKG)/dotconfig
 
 #  Note that we're ignoring editor backup and .sh files.
 CFGFILES = $(filter-out %.sh, $(wildcard [a-z]*[^~]))
@@ -33,8 +38,7 @@ install:: $(DIRS)
 ### If we're using the Tools package, chain in its Makefile
 #	See ../Makefile for more information about Tools.
 #
-CHAIN = $(firstword $(wildcard ../../MakeStuff/Makefile ../../../MakeStuff/Makefile \
-			       ../../Tools/Makefile     ../../../Tools/Makefile))
+CHAIN = $(wildcard ../../MakeStuff/Makefile ../../../MakeStuff/Makefile)
 include $(CHAIN)
 
 report-vars::
