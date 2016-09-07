@@ -1,7 +1,9 @@
-### depends.make for Config
+### Makefile for Myrtle
 #
 # Targets:
 #	install
+#	install-pkgs
+#	report-vars
 #
 
 # Which subdirectories have an install target?
@@ -25,16 +27,17 @@ install-pkgs::
 $(HOME)/Config:
 	pwd=`pwd`; cd $(HOME); ln -s $$pwd .
 
-### If we're using the Tools package, chain in its Makefile
+### If we're using the MakeStuff package, chain in its Makefile
 #	This is optional -- it doesn't affect basic functionality -- but it
 #	brings in a lot of useful extras like "make push", recursive "make all",
 #	and so on.  Note that include does the right thing if the file list is
 #	empty, so we don't have to test for that.
 #
-#	Normally Makefile is a symlink, and local dependencies go into
-#	depends.make; I decided to try something different this time.
+#	Normally Makefile is a symlink to Makestuff/Makefile, and local
+#	dependencies go into depends.make.  We do it differently here because
+#	we might not have MakeStuff downloaded yet.
 #
-CHAIN = $(firstword $(wildcard ../MakeStuff/Makefile ../Tools/Makefile))
+CHAIN = $(wildcard ../MakeStuff/Makefile)
 include $(CHAIN)
 
 ### report-vars
