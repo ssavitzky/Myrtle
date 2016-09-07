@@ -1,7 +1,7 @@
 Myrtle
 ======
-Because turtle!
----------------
+Because $SHELL
+--------------
 
 > Where the wind takes us next year no turtle can tell<br>
 > But we'll still be at home, come high water or hell,<br>
@@ -15,8 +15,8 @@ it, and otherwise make it your own.  (My own customized version is called
 Mathilda, and you won't find it here on GitHub.)
 
 Myrtle is meant to be installed in the same directory as Honu.  It has a
-`bootstrap.sh` script that sets up the environment variables that Honu is
-looking for, bootstraps Honu, and finally does its own install.
+`bootstrap.sh` shell script that sets up the environment variables that Honu
+is looking for, bootstraps Honu, and finally does its own install.
 
 Annotated Contents
 ------------------
