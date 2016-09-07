@@ -1,7 +1,7 @@
 Myrtle
 ======
-Because turtle
---------------
+Because turtle!
+---------------
 
 > Where the wind takes us next year no turtle can tell<br>
 > But we'll still be at home, come high water or hell,<br>
@@ -9,11 +9,10 @@ Because turtle
 > -- [Windward](http://steve.savitzky.net/Songs/windward/), by Stephen
 > Savitzky, 2015
 
-This project is a sample customization package for [Honu](../Honu).  Unlike
-Honu, which is pretty generic unless your tastes are rather different from
-mine, Myrtle is meant to be forked, hacked on, and otherwise made your own.
-(My own customized version is called Mathilda, and you won't find it here on
-GitHub.
+This project is a sample customization package for [Honu](../Honu).  It does
+nothing at all out of the box -- it's perfectly unless you fork it, hack on
+it, and otherwise make it your own.  (My own customized version is called
+Mathilda, and you won't find it here on GitHub.)
 
 Myrtle is meant to be installed in the same directory as Honu.  It has a
 `bootstrap.sh` script that sets up the environment variables that Honu is
