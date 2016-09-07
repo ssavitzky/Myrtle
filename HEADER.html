@@ -1,0 +1,88 @@
+<h2><a href="../" >steve.savitzky.net</a>
+  / <a href="./" ><code>Myrtle</code></a> /</h2>
+<p> <a href="../">[..]</a>
+    <a href="#files">[files]</a></p>
+<link rel="stylesheet" type="text/css" href="/style.css" />
+
+<h1>Myrtle</h1>
+<h2>... because turtle!</h2>
+
+<p> Myrtle is a sample customization package for <a href="../Honu/">Honu</a>.
+    It does nothing at all out of the box -- it's perfectly unless you fork
+    it, hack on it, and otherwise make it your own.  (My own customized
+    version is called Mathilda, and you won't find it here on GitHub.)
+<p> Out of the box it does nothing at all.
+</p>
+<p> <b>Note:</b> this HEADER.html file is meant for incorporation into my
+    website.  If you're looking at it on <a
+    href="https://github.com/ssavitzky/Myrtle/" >github</a>, you may already
+    have noticed that it's mostly a duplicate of <code>README.md</code>.
+</p>
+
+<h2>Annotated Contents</h2>
+
+<h3>Files</h3>
+<dl>
+  <dt> <code><a href="bootstrap.sh">bootstrap.sh</a></code>
+  <dd> This is the shell script that I use to configure a system.  All you
+       need to do is<br>
+       <code>wget -O - https://github.com/ssavitzky/raw/master/Myrtle/bootstrap.sh | bash</code>
+      <br>
+      or something of the sort.  You can also clone the repo and source it, but
+      that takes half the fun out of it.
+  <dt> <code><a href="MIT_LICENSE.txt">MIT_LICENSE.txt</a></code>
+  <dd> The license for this project.
+  <dt> <code><a href="Makefile">Makefile</a></code>
+  <dd> Once things get bootstrapped, the entire configuration process is run
+       via the Makefile.  <code>make&nbsp;install</code> is the main target;
+       eventually there will be targets for partial installs, e.g. on tiny
+      systems or systems where I don't have <code>sudo</code> access.
+  <dt> <code><a href="to.do">to.do</a></code>
+  <dd> My to-do list, of course.  The format is trivial: an open circle
+       (lowercase "o") is something that's not started yet; a period is
+       something in progress, and a filled circle (asterisk) is finished.  "~"
+       indicates something I've decided not to do, and "?" indicates something
+       I'm dithering about.  "&amp;" indicates something I did that I wasn't
+       planning to do.  Eventually finished items move to a "done" section.
+</dl>
+
+
+<h3>Directories</h3>
+<dl>
+  <dt> <code><a href="bin/" >bin/</a></code>
+  <dd> Programs.  Mostly small shell scripts; I don't think there are any
+       actual binary files in there at the moment.  Some are symlinks into
+       other parts of the tree, e.g. dotfiles/_xmonad.  No doubt many are
+       useless at this point; some date back to the days of usenet.
+  <dt> <code><a href="dotconfig/" >dotconfig/</a></code>
+  <dd> Configuration files and directories that go into
+       <code>~/.config/</code>.  These are symlinked so as not to conflict
+       with the stuff already there.
+  <dt> <code><a href="dotfiles/" >dotfiles/</a></code>
+  <dd> Configuration files that go into the home directory.  They are
+       symlinked rather than being copied.
+  <dt> <code><a href="emacs/" >emacs/</a></code>
+  <dd> Like it says on the tin:  configuration files for emacs.  This doesn't
+       include <code>.emacs</code>, which you'll find in <code>dotfiles</code>.
+  <dt> <code><a href="local/" >local/</a></code>
+  <dd> Files that are expected to be edited on a per-system or per-user basis.
+       Initial versions are created by <code>make&nbsp;install</code>
+  <dt> <code><a href="opt/" >opt/</a></code>
+  <dd> The Makefile here lets you download and install various optional
+       programs from elsenet.  (Right now the only one is <code>dzen2</code>
+       -- older releases of Debian and Ubuntu don't have one that's recent
+       enough to include all the features I want to use with
+       <code>xmonad</code>.) 
+  <dt> <code><a href="setup/" >setup/</a></code>
+  <dd> Scripts for configuring the things that can't (easily) be installed by
+       simply symlinking a dotfile.  This includes a lot of Gnome options.
+       There are also files with a <code>-pkgs</code> suffix, that install
+       programs using <code>apt</code>.
+  <dt> <code><a href="web/" >web/</a></code>
+  <dd> Bookmarks, and the page (<a href="web/h.home.html">h.home.html</a>)
+       that I use as a home page.
+</dl>
+
+<hr />
+<b>Copyright &copy;  Stephen R. Savitzky (HyperSpace Express)</b><br />
+
