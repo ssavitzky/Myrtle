@@ -15,17 +15,11 @@ INSTALL_DIRS := $(shell for f in $(makeable); do grep -sq install:: $$f/Makefile
 
 .PHONY: install install-pkgs report-vars
 
-install:: | $(HOME)/Config
-
 install::
 	for d in $(INSTALL_DIRS); do (cd $$d; $(MAKE) install) done
 
 install-pkgs::
 	cd setup; for f in *pkgs; do ./$$f; done
-
-# Link Config into home directory.
-$(HOME)/Config:
-	pwd=`pwd`; cd $(HOME); ln -s $$pwd .
 
 ### If we're using the MakeStuff package, chain in its Makefile
 #	This is optional -- it doesn't affect basic functionality -- but it
