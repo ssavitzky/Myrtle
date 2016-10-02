@@ -39,7 +39,7 @@ install-dzen:: | dzen
 ### If we're using the MakeStuff package, chain in its Makefile
 #	See ../Makefile for more information.
 #
-CHAIN = $(wildcard ../../MakeStuff/Makefile))
+CHAIN = $(wildcard ../../MakeStuff/Makefile)
 include $(CHAIN)
 
 report-vars::

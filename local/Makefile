@@ -5,30 +5,43 @@
 #   all will be edited to accommodate things like screen sizes, names,
 #   email addresses, remote hosts, and the like.
 #
+#   Here's how it works:
+#	Files with names starting with _ get copied to local_ for
+#	editing.  Other files, e.g. my_*, are kept as-is, in git.
+#
+#	All files matching [a-z]_* are then symlinked into
+#	../Honu/local, overriding the ones already there.
+
+DST := ../../Honu/local
+PKG := $(notdir $(shell dirname `pwd`))
+REL := ../../$(PKG)/$(notdir $(shell pwd))
+PFX = $(shell echo $(PKG) | tr A-Z a-z)
 
 MAKE_FILES = local_gitconfig
 COPY_FILES = $(addprefix local,$(wildcard _*))
 FILES =  $(COPY_FILES) $(MAKE_FILES)
+LINKS = $(addprefix ../../Honu/local/, $(FILES))
 
-DST := $(HOME)
-CFG := $(shell dirname `/bin/pwd`)
-REL := $(notdir $(CFG))/local
-
-.PHONY: install report-vars
+.PHONY: install files report-vars
 
 ### Install dotfiles in $(HOME).
 #
-install::	| $(FILES)
+install:: links_in_Honu
 	@echo local configuration files will probably have to be edited.
 
 clean::
 	rm -f $(FILES)
 
+files:: $(FILES)
+
+links_in_Honu:: 	| $(FILES)
+	cd $(DST); ln -snf $(REL)/[a-z]* .
+
 ### Config files copied from prototypes:
 #
 #	Prototypes have names starting with _, which keeps the directory
 #	listing from getting too cluttered and makes them easy to identify.
-#	Config files derived from them	have names starting with "local_".
+#	Config files derived from them	have names starting with "Mathilda_".
 #	This one rule does it all in most cases; it can be overridden by
 #	writing a specific recipe (cf. MAKE_FILES)
 #
@@ -60,7 +73,8 @@ CHAIN = $(wildcard ../../MakeStuff/Makefile)
 include $(CHAIN)
 
 report-vars::
-	@echo CFG= $(CFG)
+	@echo PFX= $(PFX)
 	@echo REL= $(REL)
+	@echo LINKS=$(LINKS)
 	@echo DOTFILES=$(DOTFILES)
 	@echo CHAIN=$(CHAIN)
