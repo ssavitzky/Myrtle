@@ -10,7 +10,7 @@ Because $SHELL
 > Savitzky, 2015
 
 This project is a sample customization package for [Honu](../Honu).  It does
-nothing at all out of the box -- it's perfectly unless you fork it, hack on
+nothing at all out of the box -- it's perfectly useless unless you fork it, hack on
 it, and otherwise make it your own.  (My own customized version is called
 Mathilda, and you won't find it here on GitHub.)
 
